@@ -1,0 +1,11 @@
+function OnCreate () {
+    vars.Speed = 10
+}
+
+function Update () {
+
+}
+
+function FixedUpdate () {
+
+}

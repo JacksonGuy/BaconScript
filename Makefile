@@ -18,4 +18,4 @@ all: $(OBJS)
 
 clean:
 	rm -rf ./bin
-	rm bsc.exe
+	rm *.exe

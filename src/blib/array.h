@@ -17,7 +17,7 @@ void* _array_push(void* arr, void* element);
 
 #define create_array(type) _create_array(16, sizeof(type))
 #define free_array(arr) _free_array(arr) 
-#define resize_array(arr, size) _resize_array(arr, size);
+#define resize_array(arr, size) _resize_array(arr, size)
 #define array_push(arr, element) \
     do { \
         __auto_type temp = element; \

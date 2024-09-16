@@ -46,7 +46,8 @@ void* _array_push(void* arr, void* element) {
     return arr;
 }
 
-int main() {
+void testArray() {
+    // Int array
     int* arr = (int*)create_array(int);
 
     printf("Capacity: %d\n", array_capacity(arr));
@@ -65,4 +66,10 @@ int main() {
     printf("Manual add: %d\n", arr[array_length(arr)-1]);
 
     free_array(arr);
+
+    // String array
+    char** strings = (char**)create_array(char*);
+    array_push(strings, "Hello");
+    array_push(strings, "World");
+    printf("%s %s!\n", strings[0], strings[1]);
 }

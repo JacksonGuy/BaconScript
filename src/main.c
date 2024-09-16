@@ -3,54 +3,9 @@
 #include <string.h> 
 #include <stdbool.h>
 
-typedef enum {
-    // NULL expression
-    NONE,
+#include "blib/array.h"
 
-    // Assignment
-    EQUALS,
-
-    // Comparison
-    ISEQUAL, NOTEQUAL, LESSTHAN, GREATERTHAN,
-    LESSTHANEQU, GREATERTHANEQU,
-
-    // Math
-    PLUS, MINUS, MULTIPLY, DIVIDE,   
-} BinaryOperator;
-
-typedef enum {
-    NUMBER,
-    STRING
-} var_t;
-
-typedef union {
-    int intVal;
-    float floatVal;
-} data_t;
-
-typedef struct {
-    var_t type;
-    data_t data;
-} Variable;
-
-typedef struct {
-    Variable val1;
-    Variable val2;
-    BinaryOperator op;
-} BinaryExpr;
-
-typedef enum {
-    BINARY,
-    STATEMENT,
-    FORLOOP,
-    WHILELOOP
-} ExprType;
-
-typedef struct { 
-    ExprType type;      // Type of expression
-    void* expr;         // The expression
-    ExprNode* next;     // Next node
-} ExprNode;
+#include "expressions.h"
 
 int main(int argc, char** argv) {
     // Check for command line arguments 
@@ -59,6 +14,8 @@ int main(int argc, char** argv) {
         exit(1);
     }
     
+    printf("Compiling: %s\n", argv[1]);
+
     // Open file
     FILE* fptr;
     fptr = fopen(argv[1], "r");
@@ -67,10 +24,38 @@ int main(int argc, char** argv) {
         exit(1);
     }
 
-    // Read file
-    while (!feof(fptr)) {
+    printf("Opened File Successfully\n");
 
+    // Read file
+    char tokenBuffer[128] = {0};
+    int tokenBufferIndex = 0;
+    char** tokens = (char**)create_array(char*);
+    while (!feof(fptr)) {
+        char ch = fgetc(fptr);
+        // printf("Current Char: %c\n", ch);
+
+        if (ch != ' ' && ch != '\n' && ch != EOF) {
+            tokenBuffer[tokenBufferIndex++] = ch;
+        }
+        else {
+            // Add token to array
+            char* tok = malloc(128);
+            strcpy(tok, tokenBuffer);
+            array_push(tokens, tok);
+            free(tok);
+            // printf("Token: %s\n", tokens[array_length(tokens)-1]);
+
+            // Reset token buffer
+            strcpy(tokenBuffer, "");
+            tokenBufferIndex = 0;
+        }
     }
+    free(tokenBuffer);
+
+    for (int i = 0; i < array_length(tokens); i++) {
+        printf("Token %d: %s\n", i, tokens[i]);
+    }
+    free_array(tokens);
 
     fclose(fptr);
     return 0;

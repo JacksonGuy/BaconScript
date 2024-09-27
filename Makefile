@@ -1,15 +1,15 @@
-cc = gcc
+cc = g++
 
 CFLAGS = -g
 
 BUILD_DIR = bin
 
-SOURCES = $(wildcard src/*.c src/**/*.c)
-OBJS = $(patsubst %.c, $(BUILD_DIR)/%.o, $(SOURCES))
+SOURCES = $(wildcard src/*.cpp src/**/*.cpp)
+OBJS = $(patsubst %.cpp, $(BUILD_DIR)/%.o, $(SOURCES))
 
 EXE = bsc.exe
 
-$(BUILD_DIR)/%.o : %.c
+$(BUILD_DIR)/%.o : %.cpp
 	@mkdir -p $(@D)
 	$(cc) $(CFLAGS) -c -o $@ $<
 

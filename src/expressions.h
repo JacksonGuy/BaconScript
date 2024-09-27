@@ -8,11 +8,12 @@ typedef enum {
     EQUALS,
 
     // Comparison
-    ISEQUAL, NOTEQUAL, LESSTHAN, GREATERTHAN,
-    LESSTHANEQU, GREATERTHANEQU,
+    ISEQUAL, NOTEQUAL, LESSTHAN, GREATERTHAN,   // ==, !=, <, >
+    LESSTHANEQU, GREATERTHANEQU,                // <=, >=
 
     // Math
-    PLUS, MINUS, MULTIPLY, DIVIDE,   
+    PLUS, MINUS, MULTIPLY, DIVIDE,              // +, -, *, =
+    PLUSEQU, MINUSEQU, MULTIEEQU, DIVIDEEQU     // +=, -=, *=, /=
 } BinaryOperator;
 
 typedef enum {

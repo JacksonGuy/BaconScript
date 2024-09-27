@@ -1,1 +1,5 @@
 print ("hello");
+
+function boo (int& num) {
+    print(num);
+}

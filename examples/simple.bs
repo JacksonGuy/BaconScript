@@ -1,5 +1,7 @@
-print ("hello");
-
-function boo (int& num) {
+function boo (int& num) -> None {
     print(num);
+}
+
+function main () -> None {
+    print("Hello");
 }

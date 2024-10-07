@@ -5,23 +5,9 @@
 #include <string>
 #include <cstring>
 
-#include "expressions.h"
-
-namespace Compiler {
-    std::vector<char> BreakChars = {
-        ' ', '\n', '\0', EOF,
-    };
-    std::vector<char> SeparatorChars = {
-        ';',
-        '(', ')', '[', ']',
-        '"', '\'',
-    };
-
-    std::vector<std::string> statementKeywords = {
-        "print",
-        "function"
-    };
-}
+#include "../include/expressions.h"
+#include "../include/parse.h"
+#include "../include/compiler.h"
 
 void CleanTokens(std::vector<std::string>& tokens) {
     size_t size = tokens.size();
@@ -101,10 +87,7 @@ int main(int argc, char** argv) {
     // Remove Unnecessary tokens
     CleanTokens(tokens);
 
-    for (size_t i = 0; i < tokens.size(); i++) {
-        std::cout << "Token " << i << ": " << tokens[i] << "\n";
-    }
-
+    parseTokens(tokens);
     fclose(fptr);
     return 0;
 }

@@ -1,4 +1,4 @@
-function addTwo (int& num) {
+function addTwo (int& num) -> None {
     num += 2;
 }
 
@@ -9,7 +9,7 @@ function getMax (int a, int b) -> int {
     return b;
 }
 
-function conditionalCheck (int a) {
+function conditionalCheck (int a) -> None {
     if (a == 1) {
         print("1");
     }
@@ -21,7 +21,7 @@ function conditionalCheck (int a) {
     }
 }
 
-function main () {
+function main () -> None {
     // Variable Declarations
     int a = 1;
     float b = 3.14159;
@@ -33,7 +33,7 @@ function main () {
     addTwo(n);
     print(n);
     
-    for (int i = 0; i < 10; i += 1) {
+    for (i in 0..10) {
         print(i);
     }
 

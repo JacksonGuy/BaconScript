@@ -24,6 +24,7 @@ typedef enum {
 typedef union {
     int intVal;
     float floatVal;
+    char* strVal;
 } data_t;
 
 typedef struct {
